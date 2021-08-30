@@ -3,7 +3,7 @@
 // @name            IITC plugin: Fan Fields 2
 // @author          Heistergand
 // @category        Layer
-// @version         2.1.7
+// @version         2.1.8
 // @description     Calculate how to link the portals to create the largest tidy set of nested fields. Enable from the layer chooser.
 // @match           https://intel.ingress.com/*
 // @grant           none
@@ -22,6 +22,9 @@ DEVELOPERS CAN FORK THIS PROJECT AND CONTINUE ON THEIR OWN.
 
 /*
 Version History:
+2.1.8
+Bookmark plugin now optional (save as bookmarks button is hidden when plugin is missing)
+
 2.1.7
 Fixed L.LatLng extension
 
@@ -76,7 +79,7 @@ BUG: Issue found where links are closing fields on top of portals that are
 
 2.0.3
 FIX: Counterclockwise did not work properly
-NEW: Save as Bookmarks
+NEW: Save as Bookmarks (require Bookmarks plugin)
 
 2.0.2
 NEW: Added Menu
@@ -1062,7 +1065,9 @@ function wrapper(plugin_info) {
     };
 	
         var button2 = '<a class="plugin_fanfields_selectpolybtn plugin_fanfields_btn" id="plugin_fanfields_selectpolybtn" onclick="window.plugin.fanfields.selectPolygon(\'start\');">Select&nbsp;Polygon</a> ';
-        var button3 = '<a class="plugin_fanfields_btn" onclick="window.plugin.fanfields.saveBookmarks();">Write&nbsp;Bookmarks</a> ';
+		if(typeof window.plugin.bookmarks != 'undefined') {
+			var button3 = '<a class="plugin_fanfields_btn" onclick="window.plugin.fanfields.saveBookmarks();">Write&nbsp;Bookmarks</a> ';
+		}
         var button4 = '<a class="plugin_fanfields_btn" onclick="window.plugin.fanfields.exportText();">Show&nbsp;as&nbsp;list</a> ';
 
         var button5 = '<a class="plugin_fanfields_btn" id="plugin_fanfields_resetbtn" onclick="window.plugin.fanfields.reset();">Reset</a> ';
@@ -1073,9 +1078,13 @@ function wrapper(plugin_info) {
         var button10 = '<a class="plugin_fanfields_btn" id="plugin_fanfields_statsbtn" onclick="window.plugin.fanfields.showStatistics();">Stats</a> ';
         var button11 = '<a class="plugin_fanfields_btn" id="plugin_fanfields_exportbtn" onclick="window.plugin.fanfields.exportDrawtools();">Write&nbsp;DrawTools</a> ';
         var button1 = '<a class="plugin_fanfields_btn" id="plugin_fanfields_helpbtn" onclick="window.plugin.fanfields.help();" >Help</a> ';
-        var fanfields_buttons =
+        var fanfields_buttons = '';
+		if(typeof window.plugin.bookmarks != 'undefined') {
+			fanfields_buttons += button3;
+		}
+		fanfields_buttons +=
             //  button2 +
-            button3 + button11 +
+            button11 +
             button4 +
             //  button5 +
             button6 +
@@ -1096,15 +1105,15 @@ function wrapper(plugin_info) {
                              '"><legend >Fan Fields</legend></fieldset>');
         //$('#plugin_fanfields_toolbox').append('<div id="plugin_fanfields_toolbox_title">Fan Fields 2</div>');
 
-        if (!window.plugin.drawTools || !window.plugin.bookmarks) {
+        if (!window.plugin.drawTools) {
 
             dialog({
-                html: '<b>Fan Fields</b><p>Fan Fields requires IITC drawtools and bookmarks plugins</p><a href="https://iitc.me/desktop/">Download here</a>',
+                html: '<b>Fan Fields</b><p>Fan Fields requires IITC drawtools plugins</p><a href="https://iitc.me/desktop/">Download here</a>',
                 id: 'plugin_fanfields_alert_dependencies',
                 title: 'Fan Fields - Missing dependency'
             });
             $('#plugin_fanfields_toolbox').empty();
-            $('#plugin_fanfields_toolbox').append("<i>Fan Fields requires IITC drawtools and bookmarks plugins.</i>");
+            $('#plugin_fanfields_toolbox').append("<i>Fan Fields requires IITC drawtools and plugins.</i>");
 
             return;
         }
