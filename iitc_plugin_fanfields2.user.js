@@ -7,9 +7,8 @@
 // @description     Calculate how to link the portals to create the largest tidy set of nested fields. Enable from the layer chooser.
 // @match           https://intel.ingress.com/*
 // @grant           none
-
-// @downloadURL https://github.com/seth10/fanfields2/raw/master/iitc_plugin_fanfields2.user.js
-// @updateURL https://github.com/seth10/fanfields2/raw/master/iitc_plugin_fanfields2.meta.js
+// @downloadURL     https://github.com/Jormund/fanfields2/raw/master/iitc_plugin_fanfields2.user.js
+// @updateURL       https://github.com/Jormund/fanfields2/raw/master/iitc_plugin_fanfields2.meta.js
 // ==/UserScript==
 
 /*
