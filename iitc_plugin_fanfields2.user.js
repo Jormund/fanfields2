@@ -3,16 +3,9 @@
 // @name            IITC plugin: Fan Fields 2
 // @author          Heistergand
 // @category        Layer
-// @version         2.1.5
+// @version         2.1.6
 // @description     Calculate how to link the portals to create the largest tidy set of nested fields. Enable from the layer chooser.
-// @include         https://*.ingress.com/intel*
-// @include         http://*.ingress.com/intel*
-// @include         https://*.ingress.com/mission/*
-// @include         http://*.ingress.com/mission/*
-// @match           https://*.ingress.com/intel*
-// @match           http://*.ingress.com/intel*
-// @match           https://*.ingress.com/mission/*
-// @match           http://*.ingress.com/mission/*
+// @match           https://intel.ingress.com/*
 // @grant           none
 
 // @downloadURL https://github.com/seth10/fanfields2/raw/master/iitc_plugin_fanfields2.user.js
@@ -30,6 +23,9 @@ DEVELOPERS CAN FORK THIS PROJECT AND CONTINUE ON THEIR OWN.
 
 /*
 Version History:
+2.1.6
+Fix intel URL
+
 2.1.5
 FIX: Minor syntax issue affecting potentially more strict runtimes
 
